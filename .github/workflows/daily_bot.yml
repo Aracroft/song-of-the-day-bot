@@ -1,8 +1,7 @@
 name: Daily Song Bot Tweet
-
 on:
   schedule:
-    # Runs at 17:50 PM UTC every day
+    # Runs at 18:00 PM UTC every day
     - cron: '0 12 * * *'
   # Allows manual triggering for testing
   workflow_dispatch:
@@ -19,11 +18,10 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install Dependencies -
-             upgrade pip
-        run: python -m pip install --
-             upgrade pip
-        -name: pip install -r requirements.txt
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Run Python Script and Tweet
         run: python main.py
@@ -34,6 +32,3 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
           BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-]
