@@ -4,7 +4,6 @@ import random
 import os
 from dotenv import load_dotenv
 
-
 load_dotenv()
 
 # Twitter/X API credentials
@@ -26,41 +25,42 @@ FUN_FACTS = [
 ]
 # Initialize Twitter API v2
 client = tweepy.Client(
-    bearer_token=BEARER_TOKEN,
+ bearer_token=BEARER_TOKEN,
     consumer_key=API_KEY,
     consumer_secret=API_SECRET,
     access_token=ACCESS_TOKEN,
-    access_token_secret=ACCESS_TOKEN_SECRET
+     access_token_secret=ACCESS_TOKEN_SECRET
 )
 
 def get_song_of_the_day():
+    # Using a free API for random songs (you can change this later)
     try:
-        # Your API call logic here (commented out since it's incomplete)
-        # await = data[ await ]  # This line is invalid - remove it
-        # data = ... (your API response data)
-        title = "Song Title"  # Replace with actual title from API
-        artist = "Artist Name"  # Replace with actual artist from API
-        default_url = f"https://www.youtube.com/results?search_query={title}+{artist}"
-        youtube_url = data.get("youtube_url", default_url)
-        return f"Song of the Day: {title} by {artist} {youtube_url}"
-
-    except requests.RequestException as e:
-        print(f"API Request Failed: {e}")
-        return "Song of the Day: Diamonds by LeoStayTrill & AyoMaff (http://bit.ly/4B0Sx8R)"
+        response = requests.get("https://api.openbeats.live/v1/tracks/random")
+        data = response.json()
+        title = data["title"]
+        artist = data["artist"]
+        youtube_url = data.get("youtube_url", "https://youtube.com")
+        return f"🎵 Song of the Day:\n\n\"{title}\" by {artist}\n\n{youtube_url}"
+    except:
+        # Fallback if API is down
+        return "🎵 Song of the Day:\n\n'Stubborn' by Victony & Asake\https://youtu.be/vp0b_fqPvkM?si=4viUSqnmYFaRnsEF"
 
 def tweet_song():
     song_text = get_song_of_the_day()
     fact = random.choice(FUN_FACTS)
-    tweet = f"{song_text}\n\nFun-fact: {fact}\n\n#songOfTheDay #MusicBot"
+    tweet = f"{song_text}\n\n🎯 Fun Fact: {fact}\n\n#SongOfTheDay #MusicBot"
     
     try:
-        response = client.create_tweet(text=tweet)  # Fixed: text-tweet -> text=tweet
+        client.create_tweet(text=tweet)
         print("Tweeted successfully!")
-        print(response.data['id'])  # shows tweet ID
+        print(tweet)
     except Exception as e:
-        print("ERROR - Could not tweet.")
-        print(e)  # THIS WILL SHOW THE REAL PROBLEM
-        print(e.response.text if hasattr(e, 'response') else "No response")
+        print("Error:", e)
+
+if _name_ == "_main_":
+    tweet_song()
+
+
 
 
 
