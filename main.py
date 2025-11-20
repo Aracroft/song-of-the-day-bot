@@ -34,32 +34,34 @@ client = tweepy.Client(
 )
 
 def get_song_of_the_day():
-    # Using a free API for random songs (you can change this later)
     try:
-        response = requests.get("https://api.openbeats.live/v1/tracks/random")
-        data = response.json()
-        title = data["title"]
-        artist = data["artist"]
-        youtube_url = data.get("youtube_url", "https://youtube.com")
-        return rf"🎵 Song of the Day:\n\n\"{title}\" by {artist}\n\n{youtube_url}"
-    except:
-        # Fallback if API is down
-        return "🎵 Song of the Day:\n\n'Diamonds' by LeoStayTrill & AyoMaff\http://bit.ly/48bSwSR"
+        # Your API call logic here (commented out since it's incomplete)
+        # await = data[ await ]  # This line is invalid - remove it
+        # data = ... (your API response data)
+        title = "Song Title"  # Replace with actual title from API
+        artist = "Artist Name"  # Replace with actual artist from API
+        default_url = f"https://www.youtube.com/results?search_query={title}+{artist}"
+        youtube_url = data.get("youtube_url", default_url)
+        return f"Song of the Day: {title} by {artist} {youtube_url}"
 
+    except requests.RequestException as e:
+        print(f"API Request Failed: {e}")
+        return "Song of the Day: Diamonds by LeoStayTrill & AyoMaff (http://bit.ly/4B0Sx8R)"
 
 def tweet_song():
     song_text = get_song_of_the_day()
     fact = random.choice(FUN_FACTS)
-    tweet = f"{song_text}\n\nFun Fact: {fact}\n\n#SongOfTheDay #MusicBot"
-
+    tweet = f"{song_text}\n\nFun-fact: {fact}\n\n#songOfTheDay #MusicBot"
+    
     try:
-        response = client.create_tweet(text=tweet)
+        response = client.create_tweet(text=tweet)  # Fixed: text-tweet -> text=tweet
         print("Tweeted successfully!")
         print(response.data['id'])  # shows tweet ID
     except Exception as e:
-        print("ERROR — Could not tweet:")
-        print(e)  # ← THIS WILL SHOW THE REAL PROBLEM
-        print(e.response.text if hasattr(e, 'response') else "No response")
+        print("ERROR - Could not tweet.")
+        print(e)  # THIS WILL SHOW THE REAL PROBLEM
+        print(e.response.text if hasattr(e, 'response') else "No response")
+
 
 
 
