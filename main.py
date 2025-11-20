@@ -27,8 +27,8 @@ FUN_FACTS = [
 # Initialize Twitter API v2
 client = tweepy.Client(
     bearer_token=BEARER_TOKEN,
-    consumer_key=API_KEY,
-    consumer_secret=API_SECRET,
+    api_key=API_KEY,
+    api_secret=API_SECRET,
     access_token=ACCESS_TOKEN,
     access_token_secret=ACCESS_TOKEN_SECRET
 )
@@ -41,7 +41,7 @@ def get_song_of_the_day():
         title = data["title"]
         artist = data["artist"]
         youtube_url = data.get("youtube_url", "https://youtube.com")
-        return f"🎵 Song of the Day:\n\n\"{title}\" by {artist}\n\n{youtube_url}"
+        return rf"🎵 Song of the Day:\n\n\"{title}\" by {artist}\n\n{youtube_url}"
     except:
         # Fallback if API is down
         return "🎵 Song of the Day:\n\n'Diamonds' by LeoStayTrill & AyoMaff\http://bit.ly/48bSwSR"
@@ -60,4 +60,5 @@ def tweet_song():
         print("ERROR — Could not tweet:")
         print(e)  # ← THIS WILL SHOW THE REAL PROBLEM
         print(e.response.text if hasattr(e, 'response') else "No response")
+
 
