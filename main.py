@@ -27,7 +27,7 @@ FUN_FACTS = [
 # Initialize Twitter API v2
 client = tweepy.Client(
     bearer_token=BEARER_TOKEN,
-    cosumer_key=API_KEY,
+    consumer_key=API_KEY,
     consumer_secret=API_SECRET,
     access_token=ACCESS_TOKEN,
     access_token_secret=ACCESS_TOKEN_SECRET
@@ -60,6 +60,7 @@ def tweet_song():
         print("ERROR — Could not tweet:")
         print(e)  # ← THIS WILL SHOW THE REAL PROBLEM
         print(e.response.text if hasattr(e, 'response') else "No response")
+
 
 
 
