@@ -23,33 +23,40 @@ FUN_FACTS = [
     "The first song ever sung in space was 'Happy Birthday' in 1969.",
     "Honey never spoils. Archaeologists found 3000-year-old honey in Egyptian tombs that’s still edible!"
 ]
+
 # Initialize Twitter API v2
 client = tweepy.Client(
- bearer_token=BEARER_TOKEN,
+    bearer_token=BEARER_TOKEN,
     consumer_key=API_KEY,
     consumer_secret=API_SECRET,
     access_token=ACCESS_TOKEN,
-     access_token_secret=ACCESS_TOKEN_SECRET
+    access_token_secret=ACCESS_TOKEN_SECRET
 )
 
 def get_song_of_the_day():
-    # Using a free API for random songs (you can change this later)
     try:
         response = requests.get("https://api.openbeats.live/v1/tracks/random")
+        response.raise_for_status()
         data = response.json()
-        title = data["title"]
-        artist = data["artist"]
+
+        title = data.get("title", "Unknown Title")
+        artist = data.get("artist", "Unknown Artist")
         youtube_url = data.get("youtube_url", "https://youtube.com")
+
         return f"🎵 Song of the Day:\n\n\"{title}\" by {artist}\n\n{youtube_url}"
-    except:
-        # Fallback if API is down
-        return "🎵 Song of the Day:\n\n'Stubborn' by Victony & Asake\https://youtu.be/vp0b_fqPvkM?si=4viUSqnmYFaRnsEF"
+
+    except Exception:
+        return (
+            "🎵 Song of the Day:\n\n"
+            "\"Diamonds\" by LeoStayTrill & AyoMaff\n"
+            "https://youtu.be/KsPuiRqkgEA?si=EqFlQJcPSkVF4mfa"
+        )
 
 def tweet_song():
     song_text = get_song_of_the_day()
     fact = random.choice(FUN_FACTS)
     tweet = f"{song_text}\n\n🎯 Fun Fact: {fact}\n\n#SongOfTheDay #MusicBot"
-    
+
     try:
         client.create_tweet(text=tweet)
         print("Tweeted successfully!")
@@ -57,8 +64,9 @@ def tweet_song():
     except Exception as e:
         print("Error:", e)
 
-if _name_ == "_main_":
-    tweet_song()
+if __name__ == "__main__":
+    tweet_song()
+
 
 
 
