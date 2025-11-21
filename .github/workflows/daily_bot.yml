@@ -1,8 +1,8 @@
 name: Daily Song Bot Tweet
 on:
   schedule:
-    # Runs at 23:03 PM UTC every day
-    - cron: '03 23 * * *'
+    # Runs at 00:20 AM UTC every day
+    - cron: '20 00 * * *'
   # Allows manual triggering for testing
   workflow_dispatch:
 
