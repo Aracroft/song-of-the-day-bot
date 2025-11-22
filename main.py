@@ -48,8 +48,8 @@ def get_song_of_the_day():
     except Exception:
         return (
             "🎵 Song of the Day:\n\n"
-            "\"Diamonds\" by LeoStayTrill & AyoMaff\n"
-            "https://youtu.be/KsPuiRqkgEA?si=EqFlQJcPSkVF4mfa"
+            "\"nISAKA II\" by CIZA,Tems,OmahLay,Thukuthela,JAZZWRLD & LekaaBeats\n"
+            "https://youtu.be/21zI2dBKVj4?si=bSLvEFwLX1-oAR_M "
         )
 
 def tweet_song():
