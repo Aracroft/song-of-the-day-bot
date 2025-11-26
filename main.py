@@ -49,7 +49,7 @@ def get_song_of_the_day():
         return (
             "🎵 Song of the Day:\n\n"
             "\"BODY(danz)\" by Ckay ft Mavo"
-            "https://youtu.be/WfHbRILc1I8?si=giNlUrSk9LkP9Zat"
+            "https://youtu.be/WfHbRILc1I8?si=pZ9J5lOwDiybSHEn"
         )
 
 def tweet_song():
@@ -66,6 +66,7 @@ def tweet_song():
 
 if __name__ == "__main__":
     tweet_song()
+
 
 
 
