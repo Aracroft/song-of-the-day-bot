@@ -48,8 +48,8 @@ def get_song_of_the_day():
     except Exception:
         return (
             "🎵 Song of the Day:\n\n"
-            "\"99\" by Olamide,Seyi Vibez,Asake,Young John ft Daecolm"
-            " https://youtu.be/AKdFb0ljCJ0?si=WixWpeW8KIKYpMxC"
+            "\"BODY(danz)\" by Ckay ft Mavo"
+            "https://youtu.be/WfHbRILc1I8?si=giNlUrSk9LkP9Zat"
         )
 
 def tweet_song():
@@ -66,6 +66,7 @@ def tweet_song():
 
 if __name__ == "__main__":
     tweet_song()
+
 
 
 
