@@ -48,8 +48,8 @@ def get_song_of_the_day():
     except Exception:
         return (
             "🎵 Song of the Day:\n\n"
-            "\"BODY(danz)\" by Ckay ft Mavo"
-            "https://youtu.be/WfHbRILc1I8?si=pZ9J5lOwDiybSHEn"
+            "\"BEN 10\"Zen Univrse"
+            "https://music.apple.com/ng/album/ben-10/1838910554?i=1838910556"
         )
 
 def tweet_song():
@@ -66,6 +66,7 @@ def tweet_song():
 
 if __name__ == "__main__":
     tweet_song()
+
 
 
 
