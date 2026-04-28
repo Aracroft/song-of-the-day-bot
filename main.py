@@ -48,8 +48,8 @@ def get_song_of_the_day():
     except Exception:
         return (
             "🎵 Song of the Day:\n\n"
-            "\"BEN 10\"Zen Univrse"
-            "https://music.apple.com/ng/album/ben-10/1838910554?i=1838910556"
+            "\"Raindance\"Matt Jaffe"
+            "https://open.spotify.com/track/4eQPjq8HfCXxL97fykXhhL?si=oMqd1u87RGCpWOUAOJ0UTQ"
         )
 
 def tweet_song():
